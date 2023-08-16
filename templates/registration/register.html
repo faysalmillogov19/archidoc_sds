@@ -1,0 +1,39 @@
+{% extends 'layouts/Layout.html' %} {% block content %}
+<section>
+  <div class="container">
+    <div class="row">
+      
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 mt-3 card">
+        <div class="col-md-12 col-centered">
+          <h2 class="mt-5 mb-3 text-center">Nouvel utilisateur</h1>
+        </div>
+        <form method="post" class="text-start" action="{% url 'register' %}">
+          {% csrf_token %} 
+          {% for field in form %}
+          <div class="form-group ">
+            {{ field.label_tag }}
+            <div class="input-group input-group-outline my-3">
+            <input
+              type="{% if 'password' in field.label_tag %}password{% else %}text{% endif %}"
+              name="{{ field.html_name }}"
+              class="form-control"
+              maxlength="{% if 'username' in field.label_tag %}150{% endif %}"
+              id="{{ field.id_for_label }}"
+              required
+            />
+          </div>
+          </div>
+          {% if field.errors %} {% for error in field.errors %}
+          <p style="font-size: 13px;">
+            {{ error|escape }}
+          </p>
+          {% endfor %} {% endif %} {% endfor %}
+          <button type="submit" class="btn btn-primary mt-2">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

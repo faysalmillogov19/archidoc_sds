@@ -1,0 +1,62 @@
+ {% extends 'layouts/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+    <!-- End Navbar -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+                <h6 class="text-white text-capitalize ps-3 col-10">Années académiques</h6>
+                <div class="col-2">                    
+                  <a href="{% url 'annee_academique_form' id=0 %}"  class="right-align text-white font-weight-bold text-xs badge badge-sm bg-gradient-success">Ajouter</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Libelle</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Debut</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fin</th>
+                      <th class="text-secondary opacity-7">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for annee in annee_academiques %}
+                    <tr>
+                      <td>
+                        <p class="align-middle text-center text-sm">{{annee.libelle}}</p>
+                        <p class="align-middle text-center text-sm"></p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{annee.debut}}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{annee.fin}}</span>
+                      </td>
+                      <td class="align-middle">
+                        <a href="{% url 'annee_academique_form' id=annee.id %}" class="text-white font-weight-bold text-xs badge badge-sm bg-gradient-info" data-toggle="tooltip" data-original-title="Edit user">
+                          Editer
+                        </a>
+                        <a href="{% url 'set_annee_academique' id=annee.id %}" class="text-white font-weight-bold text-xs badge badge-sm bg-gradient-danger" data-toggle="tooltip" data-original-title="Edit user">
+                          Supprimer
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+               
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+ {% endblock %}

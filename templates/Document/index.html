@@ -1,0 +1,81 @@
+ {% extends 'layouts/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+    <!-- End Navbar -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+                <h6 class="text-white text-capitalize ps-3 col-10">Documents</h6>
+                <div class="col-2">                    
+                  <a href="{% url 'form_archive' id=0 %}"  class="right-align text-white font-weight-bold text-xs badge badge-sm bg-gradient-success"> <i class="material-icons">add</i></a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table id="example" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Années academiques</th>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveaux</th>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Filières</th>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Premier semestre</th>
+                      <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deuxieme semestre</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Examens</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Types</th>
+                      <th class="text-secondary opacity-7">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for d in data %}
+                    <tr>
+                      <td>
+                        <p class="align-middle text-center text-sm">{{d.annee_academique.debut}}-{{d.annee_academique.fin}}</p>
+                        <p class="align-middle text-center text-sm"></p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.niveau.libelle}}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.filiere.libelle}}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.session1.libelle}}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.session2.libelle}}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.examen.libelle}}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs badge badge-sm ">{{d.type_document.libelle}}</span>
+                      </td>
+                      <td class="align-middle">
+                        <a href="{% url 'details' id=d.id %}" class="text-white font-weight-bold text-xs badge badge-sm bg-gradient-warning" data-toggle="tooltip" data-original-title="Edit user"><i class="material-icons">remove_red_eye</i>
+                        </a>
+                        <a href="{% url 'form_archive' id=d.id %}" class="text-white font-weight-bold text-xs badge badge-sm bg-gradient-info" data-toggle="tooltip" data-original-title="Edit user">  <i class="material-icons">create</i>
+                        </a>
+                        {% if user.is_superuser  %}
+                        <a href="{% url 'set_archive' id=d.id %}" class="text-white font-weight-bold text-xs badge badge-sm bg-gradient-danger" data-toggle="tooltip" data-original-title="Edit user">  <i class="material-icons">delete</i></a>
+                        {% endif  %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+               
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+ {% endblock %}

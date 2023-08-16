@@ -1,0 +1,108 @@
+ {% extends 'layouts/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+ 
+        <div id="addmodal" class="row">
+          <div class="col-lg-7 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">ARCHIVAGE</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <form role="form" method="POST" class="text-start"  action="{% url 'found' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label">Année academique</label>
+                      <div class="input-group input-group-outline my-3">
+                        <select type="text" name="annee_academique" class="form-control" >
+                          {% if data.annee_academique%}<option value="{{data.annee_academique.id}}">{{data.annee_academique.debut}}-{{data.annee_academique.fin}}</option>{% endif %}
+                          {% for d in annees %}
+                          <option value="{{d.id}}">{{d.debut}}-{{d.fin}}</option>
+                          {% endfor %}
+                          
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-6">
+                      <label class="form-label">Filière</label>
+                      <div class="input-group input-group-outline my-3">
+                        <select type="text" name="filiere" class="form-control" >
+                          {% if data.filiere%}<option value="{{data.filiere.id}}">{{data.filiere.libelle}}</option>{% endif %}
+                          <!--option ></option-->
+                          {% for d in filieres %}
+                          <option value="{{d.id}}">{{d.libelle}}</option>
+                          {% endfor %}
+                          }
+                        </select>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label">Niveau</label>
+                      <div class="input-group input-group-outline my-3">
+                        <select type="text" name="niveau" class="form-control" >
+                          {% if data.niveau %}<option value="{{data.niveau.id}}">{{data.niveau.libelle}}</option>{% endif %}
+                          <!--option ></option-->
+                          {% for d in niveaux %}
+                          <option value="{{d.id}}">{{d.libelle}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label">Session</label>
+                      <div class="input-group input-group-outline my-3">
+                        <select type="text" name="session" class="form-control" >
+                          {% if data.session %}<option value="{{data.session.id}}">{{data.session.libelle}}</option>{% endif %}
+                          <!--option ></option-->
+                          {% for d in sessions %}
+                          <option value="{{d.id}}">{{d.libelle}}</option>
+                          {% endfor %}
+                          }
+                        </select>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">                      
+                      <label class="form-label">Type</label>
+                      <div class="input-group input-group-outline my-3">
+                        <select type="text" name="type_document" class="form-control" >
+                          {% if data.type_document %}<option value="{{data.type_document.id}}">{{data.type_document.libelle}}</option>{% endif %}
+                          <!--option ></option-->
+                          {% for d in type_documents %}
+                          <option value="{{d.id}}">{{d.libelle}}</option>
+                          {% endfor %}
+                          }
+                        </select>
+                      </div>                     
+                    </div>                    
+                  </div>
+                  
+                    <div class="row">
+                      <div class="text-center col-4">
+                        <input type="submit" value="Rechercher" type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                      </div>
+                      <!--div class="text-center col-4 right-align">
+                        <input type="submit" value="Exporter" type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                      </div-->
+
+                    </div>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+ {% endblock %}
