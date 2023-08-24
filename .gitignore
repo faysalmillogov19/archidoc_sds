@@ -669,3 +669,4 @@ FodyWeavers.xsd
 
 # Ignorer tous les fichiers sous le répertoire /static/archives/
 static/archives/
+*env.local

@@ -14,21 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include, re_path
+from django.urls import path, include, re_path
 from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    #path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('login/', auth_views.LoginView.as_view(), name='login'
-    ),
-    path('register/', views.register, name='register' ),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    #path('home/', views.home, name='home'),
-    path('', views.index, name='index'),
-    re_path(r'^archives/', include('document.urls')),
-    re_path(r'^etudiant/', include('etudiant.urls')),
-    re_path(r'^parametres/', include('parametres.urls')),
-    re_path(r'^manage_user/', include('manageuser.urls')),
-    path('admin/', admin.site.urls),
+    # path('login/', auth_views.LoginView.as_view(), name='login'),
+    path("login/", auth_views.LoginView.as_view(), name="login"),
+    path("register/", views.register, name="register"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    # path('home/', views.home, name='home'),
+    path("", views.index, name="index"),
+    re_path("archives/", include("document.urls")),
+    re_path("etudiant/", include("etudiant.urls")),
+    re_path("parametres/", include("parametres.urls")),
+    re_path("manage_user/", include("manageuser.urls")),
+    path("admin/", admin.site.urls),
 ]
