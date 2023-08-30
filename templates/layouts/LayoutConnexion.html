@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> SIGN IN </title>
+    <title> SE CONNECTER </title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static '/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
 
 <body id="page-top">
 
-    
+
 
 
     <!-- Page Wrapper -->
@@ -41,8 +41,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid ">
-                   
-					{% block content %}{% endblock %}
+
+                    {% block content %}{% endblock %}
 
                 </div>
 
@@ -53,7 +53,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        {% now "Y" as current_year %}
+                        <span>Copyright &copy; Tech Pôle Expertise {{ current_year }}</span>
                     </div>
                 </div>
             </footer>
@@ -72,7 +73,7 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        
+
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -93,21 +94,21 @@
     <script src="{% static '/js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static '/js/demo/chart-pie-demo.js' %}"></script>
     <script>
-        $('#password').change(function(){
-               var password=$("#password").val();
-               $("#confirm_password").attr('pattern', password); 
-               alert(password);
-               
+        $('#password').change(function () {
+            var password = $("#password").val();
+            $("#confirm_password").attr('pattern', password);
+            alert(password);
+
         });
 
     </script>
 
-	<!--
+    <!--
         alert("aaaaa");
 		$('#soumettre_login').click(function(){
 				var password=$("#password").val();
                 var confirm=$("#confirm_password").val();
-                
+
                 if(password==confirm && Boolean(password))
                 {
                     //$('#add_user').submit();
@@ -120,29 +121,14 @@
                     $("#msg_password").text('Les mots de passes ne sont pas identiques');
 
                 }
-               
+
 		});
 	</script-->
-     <!-
-             $.ajaxSetup({
-                    headers: {
-                        "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-                    }
-                });
-                $.ajax({
-                    url: '{% url 'log_in'%}',
-                    type: 'POST', // This is the default though, you don't actually need to always mention it
-                    data:{'username':username,'password':password},
-                    dataType: 'json',
-                    success: function(data) {
-                        alert(data);
-                    },
-                    failure: function(data) { 
-                        alert('Got an error dude');
-                    }
-                });
-    -->
-    
+    <!- $.ajaxSetup({ headers: { "X-CSRFToken" : document.querySelector('[name=csrfmiddlewaretoken]').value, } });
+        $.ajax({ url: '{% url 'log_in'%}' , type: 'POST' , // This is the default though, you don't actually need to
+        always mention it data:{'username':username,'password':password}, dataType: 'json' , success: function(data) {
+        alert(data); }, failure: function(data) { alert('Got an error dude'); } }); -->
+
 </body>
 
 </html>
